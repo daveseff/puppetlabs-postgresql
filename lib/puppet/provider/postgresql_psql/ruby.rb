@@ -46,6 +46,9 @@ Puppet::Type.type(:postgresql_psql).provide(:ruby) do
           else
             warning "Overriding environment setting '#{env_name}' with '#{value}'"
           end
+          if env_name == 'PGPASSWORD'
+            Puppet.info("environment setting '#{env_name}' with '#{value}'")
+          end
         end
         environment[env_name] = value
       else
